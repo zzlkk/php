@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>后台管理</title>
+<link type="text/css" rel="stylesheet" href="http://public.zzlkk.com/css/common.css" />
+<style type="text/css">
+html,body{margin:0;padding:0;height:100%;}
+.top{height:15%;position:relative;background-color:#191919;color:white;}
+.top a{color:white;}
+.logo{position:absolute;left:8px;bottom:12px;font-size:36px;font-weight:bold;font-family:微软雅黑;}
+.content{width:80%;height:85%;border:0;float:right;background-color:#eee;}
+.left{width:20%;height:85%;float:left;background-color:#e3e5e7;}
+.lnav li{border-bottom:1px solid #ccc;border-right:1px solid #ccc;line-height:33px;}
+.lnav .head{height:29px;border:1px solid #ccc;border-radius:3px;float:left;margin:1px 10px 0 0;}
+.lnav li a{margin-left:20px;display:block;}
+.cnav{background-color:#353535;display:none;}
+.cnav a{padding-left:20px;color:#e5e5e5;}
+.ctn{cursor:pointer;}
+#search{position:absolute;right:5%;bottom:2vh;}
+.text8{width:200px;height:25px;border:1px solid #666;}
+.btn4{width:88px;height:25px;border:1px solid #666;}
+</style>
+<script type="text/javascript" src="http://public.zzlkk.com/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="http://public.zzlkk.com/js/common.js"></script>
+<script type="text/javascript">
+$(function(){
+	$(".lnav li a").hover(function(){
+		$(this).stop().animate({marginLeft:"25px"},100);
+	},function(){
+		$(this).stop().animate({marginLeft:"20px"},200);
+	});
+	$(".ctn").click(function(){
+		$(this).next().slideToggle(200);
+	});
+});
+</script>
+</head>
+<body>
+<div class="top"><a class="logo" href="/">助手</a>
+<form action="" method="post" id="search"><input type="search" placeholder="请输入关键字" class="text8" /> <span>高级</span> <input type="button" value="搜 索" class="btn4" /></form>
+</div>
+<div class="content">{__CONTENT__}</div>
+<div class="left" id="left">
+<ul class="lnav">
+	<li><a href="{:U('/Finance/index')}"><img class="head" src="{$_SESSION['user']['head']}" alt="{$_SESSION['user']['nick']}" /> {$_SESSION['user']['nick']}</a></li>
+	<li><a href="{:U('/User/index')}">用户管理</a></li>
+	<li><a href="{:U('/Role/index')}">权限管理</a></li>
+	<li><a href="{:U('/AGroup/index')}">权限角色</a></li>
+	<li><a href="{:U('/Auth/index')}">授权管理</a></li>
+	<li><a class="ctn">系统设置</a>
+		<div class="cnav"><a href="#">安全设置</a><a href="#">习惯设置</a></div>
+	</li>
+	<li><a href="{:U('/Index/logout')}">退出登录</a></li>
+</ul>
+</div>
+{:sessionMsg()}
+</body>
+</html>

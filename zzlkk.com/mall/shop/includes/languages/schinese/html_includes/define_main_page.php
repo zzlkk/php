@@ -1,0 +1,1 @@
+<img src="/shop/images/cjb.jpg" alt=""/>

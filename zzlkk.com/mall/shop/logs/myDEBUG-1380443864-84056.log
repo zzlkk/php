@@ -1,0 +1,2 @@
+[29-Sep-2013 16:37:44] PHP Fatal error:  1146:Table 'vovor.zen_configuration' doesn't exist :: select configuration_key as cfgkey, configuration_value as cfgvalue
+                                 from zen_configuration in D:\www\vovor\shop\includes\classes\db\mysql\query_factory.php on line 121

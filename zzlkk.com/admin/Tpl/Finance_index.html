@@ -1,0 +1,72 @@
+<layout name="layout" />
+<div class="border"><table>
+<tr><th colspan="6"><form action="{:U('/Finance/save')}" id="fsave" method="post" onsubmit="return saveCheck()"><input type="hidden" id="id" name="id" value="0" /><input type="text" id="title" name="title" placeholder="项目" /> <input type="text" id="price" name="price" placeholder="金额" /> <input type="text" id="remark" name="remark" placeholder="备注" /> <input type="date" id="time" name="time" /> <input type="submit" id="btnadd" class="btnadd" value="添加" /> <a id="btncal" style="color:red;cursor:pointer;display:none;">取消</a></form></th></tr>
+<tr><th width="10%">编号</th><th width="30%">项目</th><th width="10%">金额</th><th width="25%">备注</th><th width="10%">时间</th><th width="15%">操作</th></tr>
+<foreach name="finances" item="c">
+	<tr id="cr{$c.id}"><td>{$c.id}</td><td>{$c.title}</td><td>{$c.price}</td><td>{$c.remark}</td><td>{$c.time|substr=0,10}</td>
+	<td>
+		<a class="button" href="javascript:fly('cr{$c['id']}','btnadd')">编辑</a>
+		<a class="button" onclick="return confirm('确定删除[{$c['title']}]？')" href="{:U('/Finance/delete/id/'.$c['id'])}">删除</a>
+	</td></tr>
+</foreach>
+<tr><th colspan="6">{$pager}<label style="float:left">收入：{$in} 支出：{$out} 结余：{$in+$out}</label></th></tr>
+</table>
+</div>
+<table id="flytb"></table>
+<script type="text/javascript">
+$(function(){
+	$("table").find("tr:odd").addClass("odd");
+	initDate();
+	
+	$("#btncal").click(function(){
+		$("#id").val("");
+		$("#title").val("");
+		$("#price").val("");
+		$("#remark").val("");
+		initDate();
+		$("#btnadd").val("添加");
+		$(this).hide();
+		$(".button").show();
+	});
+	$("#title,#remark").blur(function(){
+		var color = $("#title").val().length<1&&$("#remark").val().length<1?"pink":"";
+		$("#title").css("background-color",color);
+		$("#remark").css("background-color",color);
+	});
+	$("#price").blur(function(){
+		$(this).val(eval($(this).val()));
+		$(this).css("background-color",($(this).val().length<1||isNaN($(this).val())?"pink":""));
+	});
+});
+function initDate(){
+	var td = new Date();
+	$("#time").val(td.getFullYear()+"-"+(td.getMonth()<9?"0"+(td.getMonth()+1):td.getMonth()+1)+"-"+(td.getDate()<10?"0"+td.getDate():td.getDate()));
+}
+function fly(from,to){
+	$(".button").hide();
+	var clone = $('#'+from).clone();
+	$('#flytb').append(clone).css({position:"absolute",width:$('#'+from).width()+"px",top:$('#'+from).offset().top+"px",left:$('#'+from).offset().left+"px",opacity:"1"}).show().animate({top:$('#'+to).offset().top+"px",opacity:"0.5"},800,function(){
+		$(this).hide();clone.remove();
+		$("#id").val($('#'+from).children().first().text());
+		$("#title").val($('#'+from).children().first().next().text());
+		$("#price").val($('#'+from).children().first().next().next().text());
+		$("#remark").val($('#'+from).children().first().next().next().next().text());
+		$("#time").val($('#'+from).children().first().next().next().next().next().text());
+		$("#btnadd").val("更新");
+		$("#btncal").show();
+		$("#title,#remark,#price").blur();
+	});
+}
+function saveCheck(){
+	if($("#title").val().length<1&&$("#remark").val().length<1){
+		$("#title").css("background-color","pink").focus();
+		$("#remark").css("background-color","pink");
+		return false;
+	}
+	if($("#price").val().length<1||isNaN($("#price").val())){
+		$("#price").css("background-color","pink").focus();
+		return false;
+	}
+	return true;
+}
+</script>

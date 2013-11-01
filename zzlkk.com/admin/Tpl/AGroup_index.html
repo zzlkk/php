@@ -1,0 +1,69 @@
+<layout name="layout" />
+<div class="border"><table>
+<tr><th>编号</th><th>名称</th><th>状态</th><th>排序</th><th>操作 <a class="button" href="{:U('/AGroup/index')}">刷新</a>
+<a class="button" href="javascript:add(0)">添加</a></th></tr>
+<foreach name="agroup" item="c">
+	<tr id="cr{$c.id}"><td>{$c.id}</td><td>{$c.indent}{$c.title}</td><td>{$c.status}</td><td>{$c.sort}</td>
+	<td><a class="button" href="{:U('/AGroup/save?status='.(1-$c['status']).'&id='.$c['id'])}">{$c['status']?'禁用':'启用'}</a>
+		<a class="button" href="javascript:edit({$c['id']})">编辑</a>
+		<a class="button" onclick="return confirm('所有子项也将一并删除！确定删除[{$c['title']}]？')" href="javascript:del({$c['id']})">删除</a>
+		<a class="button" href="javascript:add({$c['id']})">添加子项</a>
+	</td></tr>
+</foreach>
+</table>
+</div>
+<!-- 添加/编辑 -->
+<div id="cwin" style="display:none;width:400px;height:168px;background:#fff;padding-top:20px;border:10px solid #eee;">
+	<form action="{:U('/AGroup/save')}" method="post"><div style="margin:0 20px 0 90px;">
+		<label id="clo" style="float:right;cursor:pointer;color:#f00;">关闭</label><br/>
+		<input type="hidden" id="rid" name="id" value="" />
+		<input type="hidden" id="rpid" name="pid" value="" />
+		<label>名称</label><input type="text" id="rtitle" name="title" value="" /><br/>
+		<label>排序</label><input type="text" id="rsort" name="sort" value="" size="3" />
+		<label>状态</label><input type="checkbox" id="rstatus" name="status" checked="checked" /><br/>
+		<input type="submit" value="保存" style="margin-left:138px" />
+	</div></form>
+</div>
+<script type="text/javascript">
+$(function(){
+	$("table").find("tr:odd").addClass("odd");
+});
+function add(pid){
+	fillData(0,pid,'',99,1);
+	popup('cwin','clo');
+}
+function del(id){
+	if(!isNaN(id)&&id>0){
+		$.post("{:U('/AGroup/delete')}",{id:id},function(data){
+			if(data){$('#cr'+id).fadeOut(function(){$('#cr'+id).remove();});}
+		});
+	}else{
+		xalert('错误请求',2);
+	}
+}
+function edit(id){
+	if(!isNaN(id)){
+		$.post("{:U('/AGroup/edit')}",{id:id},function(data){
+			if(data){
+				fillData(data.id,data.pid,data.title,data.sort,data.status);
+				popup('cwin','clo');
+			}else{
+				xalert('错误请求',4);
+			}
+		});
+	}else{
+		xalert('错误请求',3);
+	}
+}
+function fillData(id,pid,title,sort,status){
+	$("#rid").val(id);
+	$("#rpid").val(pid);
+	$("#rtitle").val(title);
+	$("#rsort").val(sort);
+	if(1==status){
+		$("#rstatus").attr("checked","checked");
+	}else{
+		$("#rstatus").removeAttr("checked");
+	}
+}
+</script>

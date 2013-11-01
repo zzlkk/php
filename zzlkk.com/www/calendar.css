@@ -1,0 +1,78 @@
+body {background-color:#fff;font: 14px / 1.5em arial; height: 100%; margin: 0; padding: 0; }
+div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, blockquote, p { margin: 0; padding: 0; }
+ul { list-style: none; }
+li { list-style-type: none; }
+img { border: 0; vertical-align: top; }
+select, input { font-size: 12px; }
+address, cite, code, em, th { font-style: normal; font-weight: normal; }
+table { border-collapse: collapse; border-spacing: 0; table-layout: fixed; }
+.e_clear:after { clear: both; content: "."; display: block; height: 0; visibility: hidden; }
+.e_clear { display: inline-block; }
+.e_clear { display: block; }
+textarea { background: #fff; border: 1px solid #d2d9dc; border-radius: 2px; box-shadow: 0 0 0 #d2d9dc; -moz-transition: .3s ease-in-out; transition-property: border box-shadow; -webkit-transition: .3s ease-in-out; }
+textarea:focus, input[type="text"]:focus { /*border: 1px solid #b7d4ea;*/ box-shadow: 0 0 5px #b7d4ea; }
+a{cursor:pointer;text-decoration:none;}
+
+.v_align { vertical-align: middle; }
+
+/*jq-ui*/
+.ui-corner-all-16, .ui-corner-top-16, .ui-corner-left-16, .ui-corner-tl-16 { -moz-border-radius-topleft: 16px; -webkit-border-top-left-radius: 16px; -khtml-border-top-left-radius: 16px; border-top-left-radius: 16px; }
+.ui-corner-all-16, .ui-corner-top-16, .ui-corner-right-16, .ui-corner-tr-16 { -moz-border-radius-topright: 16px; -webkit-border-top-right-radius: 16px; -khtml-border-top-right-radius: 16px; border-top-right-radius: 16px; }
+.ui-corner-all-16, .ui-corner-bottom-16, .ui-corner-left-16, .ui-corner-bl-16 { -moz-border-radius-bottomleft: 16px; -webkit-border-bottom-left-radius: 16px; -khtml-border-bottom-left-radius: 16px; border-bottom-left-radius: 16px; }
+.ui-corner-all-16, .ui-corner-bottom-16, .ui-corner-right-16, .ui-corner-br-16 { -moz-border-radius-bottomright: 16px; -webkit-border-bottom-right-radius: 16px; -khtml-border-bottom-right-radius: 16px; border-bottom-right-radius: 16px; }
+
+.none {display:none;}
+
+.calendar{width:520px;height:400px;float:right;margin-right:66px;}
+.calendar_ctrl{padding-left:10px;float:none;padding-top:1px;background-color:rgb(75, 178, 75);}
+.time{width:80px;height:21px;float:left;line-height:21px;font-size:18px;font-family:Arial;color:#fff;margin-top:3px;text-align:center;background-color:#2C880F;}
+.ctrl_year,.ctrl_month,.ctrl_day,.return_today_btn{float:left; display:inline; width:120px; height:27px; margin-left:5px; display:inline;}
+.left_arrow,.right_arrow{float:left;font-weight:bold;width:13px;height:24px;line-height:24px;text-align:center;cursor:pointer;color:white;border:1px solid rgb(75, 178, 75);}
+.left_arrow:hover,.right_arrow:hover{font-weight:bold;color:white;border:1px solid #fff;}
+.ctrl_year_box,.ctrl_month_box,.ctrl_day{cursor:default; width:80px; height:27px; float:left; margin:0 5px; display:inline;}
+.dropselectbox{border:1px solid #1BCE41; background:#fff; position:relative; z-index:10;}
+.dropselectbox h4{width:50px;height:22px;line-height:22px;padding:1px 28px 1px 1px;text-align:center;background:#fff url(images/droparrow.jpg) no-repeat 55px 1px;cursor:pointer;font-size:14px;font-weight:normal;}
+.dropselectbox ul{max-height:215px;_height:215px;overflow-y:scroll;background:#e6f4e1;margin:0 0 0 1px;}
+.dropselectbox ul li{cursor:pointer;width:60px; height:22px; line-height:22px; text-align:center; color:#666; font-size:14px; }
+.dropselectbox ul li.on{background:#1f9237;color:white;}
+.return_today_btn{width:73px; line-height:26px; background:url(images/return_today_btn.jpg) no-repeat; text-align:center; color:#fff;font-size:14px;}
+
+.calendar_week{height:20px; line-height:19px; background-color: rgb(194, 238, 194);}
+.calendar_week ul,.calendar_list ul{margin-left:-5px;}
+.calendar_week ul,.calendar_list ul{display:inline-block;}
+.calendar_week ul,.calendar_list ul{display:block;}
+.calendar_week ul li{float:left; width:70px; text-align:center; margin-left:5px; display:inline; color:#25992e; font-size:14px; font-family: "Microsoft YaHei";}
+.calendar_week ul li.week{color:#ed6d23;}
+/*本月*/
+.calendar_list ul li{width:68px; height:50px; border:1px solid #f3f3f4; float:left; margin:5px 0 0 5px; display:inline; text-align:right; cursor:pointer; overflow:hidden;}
+.solar_date{font-size:24px; font-family:Arial; font-weight:600; padding:8px 12px 0px 12px; line-height:23px; height:23px; color:#555;}
+.lunar_date{font-size:12px; font-family: "Microsoft YaHei"; padding-right:12px; color:#999;}
+
+/*前后月*/
+.nextbefor{background:white;filter:alpha(opacity=50);-moz-opacity:0.5;-khtml-opacity: 0.5;opacity: 0.5;}
+/*休*/
+.calendar_list ul li.rest{/*width:100px; height:68px; border:0; */background:url(images/rest.jpg) -1px -1px no-repeat;}
+/*班*/
+.calendar_list ul li.work{/*width:100px; height:68px; border:0;*/ background:url(images/work.jpg) -1px -1px no-repeat;}
+/*今天*/
+.calendar_list ul li.today{/*width:100px; height:68px; border:0;*/ background:url(images/today.jpg) -1px -1px no-repeat;}
+.today .solar_date,.today .lunar_date{color:#1f9237;}
+/*普通点击状态*/
+.calendar_list ul li.on{width:68px; height:50px; border:1px solid #9ad97d;position:relative;}
+.calendar_list ul li.on .border{position:absolute;width:64px; height:46px; border:3px solid #9ad97d; left:-1px;top:-1px;}
+/*休点击状态*/
+.calendar_list ul li.reston{/*width:100px; height:68px; border:0;*/ background:url(images/reston.jpg) -1px -1px no-repeat;}
+/*班点击状态*/
+.calendar_list ul li.workon{/*width:100px; height:68px; border:0;*/ background:url(images/workon.jpg) -1px -1px no-repeat;}
+/*周末*/
+.weekend .solar_date,.weekend .lunar_date{color:#ed6d23;}
+/*国际节假日*/
+.isolar .lunar_date{color:#1f9237;}
+/*节气日*/
+.solar .lunar_date{color:#6aba49;}
+/*法定节假日*/
+.vacation .solar_date,.vacation .lunar_date{color:#ed6d23;}
+.work .solar_date,.workon .solar_date{color:#555;}
+.work .lunar_date,.workon .lunar_date{color:#999;}
+
+.today_icon{width:50px; height:54px; background:url(images/today_icon.jpg) no-repeat; position:absolute; left:160px; top:-3px;}
